@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'profile_screen.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});
@@ -6,15 +7,15 @@ class MoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> moreModules = [
-      {'icon': Icons.account_balance, 'title': 'Government Services'},
-      {'icon': Icons.article, 'title': 'News'},
-      {'icon': Icons.work, 'title': 'Freelance Jobs'},
-      {'icon': Icons.people, 'title': 'Community'},
-      {'icon': Icons.movie, 'title': 'Entertainment'},
-      {'icon': Icons.directions_bus, 'title': 'Transportation'},
-      {'icon': Icons.fitness_center, 'title': 'Fitness'},
-      {'icon': Icons.cloud, 'title': 'Climate Alert'},
-      {'icon': Icons.settings, 'title': 'Settings'},
+      {'icon': Icons.account_balance, 'title': 'Government Services', 'target': null},
+      {'icon': Icons.article, 'title': 'News', 'target': null},
+      {'icon': Icons.work, 'title': 'Freelance Jobs', 'target': null},
+      {'icon': Icons.people, 'title': 'Community', 'target': null},
+      {'icon': Icons.movie, 'title': 'Entertainment', 'target': null},
+      {'icon': Icons.directions_bus, 'title': 'Transportation', 'target': null},
+      {'icon': Icons.fitness_center, 'title': 'Fitness', 'target': null},
+      {'icon': Icons.cloud, 'title': 'Climate Alert', 'target': null},
+      {'icon': Icons.person, 'title': 'Profile', 'target': const ProfileScreen()},
     ];
 
     return Scaffold(
@@ -32,7 +33,12 @@ class MoreScreen extends StatelessWidget {
               title: Text(moreModules[index]['title']),
               trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
-                // Navigate to respective screen
+                if (moreModules[index]['target'] != null) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => moreModules[index]['target']),
+                  );
+                }
               },
             ),
           );
